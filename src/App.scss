@@ -1,0 +1,154 @@
+$ocean: #356ae6;
+$ocean-120: #1b54d9;
+$ocean-80: #5884ea;
+$ocean-60: #c1d1f7;
+$ocean-40: #e3ebfc;
+$ocean-30: #edf3fe;
+$ocean-20: #fafbff;
+$slate: #4e5468;
+$slate-120: #1f2129;
+$slate-80: #5f667e;
+$slate-60: #9298ad;
+$slate-40: #ced3e0;
+$slate-30: #edf0f7;
+$slate-20: #f7f9ff;
+$mint: #19cca3;
+$mint-120: #139879;
+$mint-80: #1bddb1;
+$mint-60: #6ae6c9;
+$mint-40: #b6f2e4;
+$mint-20: #ebfffa;
+$strawberry-120: #e40e49;
+
+$border-radius: 4px;
+
+html {
+  height: 100vh;
+}
+
+body {
+  background: linear-gradient(to bottom right, $slate, $slate-30);
+  justify-content: center;
+  display: flex;
+  margin: 0;
+  width: 100%;
+}
+
+.main {
+  flex-flow: column;
+  font-family: "IBM Plex", sans;
+  align-items: center;
+  display: flex;
+  flex: 0 0 60%;
+}
+
+// cutting some corners, would handle this differently in a bigger project
+.bold,
+sup {
+  font-weight: bold;
+}
+
+.progress-flag {
+  background: $ocean-40;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 20px 0 $slate;
+  color: $ocean-80;
+  padding: 6px 10px;
+  padding-right: 0;
+  position: relative;
+  margin: 40px;
+  margin-bottom: 0;
+  width: 80%;
+  &:after {
+    border: 14px solid transparent;
+    border-top: 14px solid $ocean-40;
+    content: "";
+    right: 20%;
+    position: absolute;
+    top: 100%;
+  }
+}
+
+.form-container {
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 20px 0 $slate;
+  margin: 40px;
+  margin-top: 20px;
+  width: 80%;
+  .text-container {
+    padding: 20px;
+    max-width: 460px;
+    p {
+      min-height: 38px;
+    }
+  }
+  .progress-bar {
+    background-image: linear-gradient(75deg, $mint 0%, $mint-40 0%);
+    border-radius: $border-radius $border-radius 0 0;
+    height: 0.75em;
+    transition: background 1s;
+  }
+  .days-left {
+    font-family: "Poppins", sans;
+  }
+}
+
+.donation-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  .input-container {
+    display: flex;
+    height: 3em;
+    position: relative;
+    .inline-form {
+      height: 100%;
+    }
+  }
+  .donation-input {
+    border: 1px solid $slate-40;
+    border-right: 0px;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+    font-weight: bold;
+    outline: none;
+    padding: 0 10px;
+    position: relative;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0;
+    }
+    &::before {
+      content: "$";
+      height: 20px;
+      width: 20px;
+    }
+  }
+  .give-button {
+    background: $mint;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    outline: none;
+    &:active {
+      background: $mint-120;
+    }
+    &[disabled] {
+      background: $mint-40;
+      cursor: default;
+    }
+  }
+
+  .error {
+    color: $strawberry-120;
+    flex: 1 0 100%;
+    padding-top: 6px;
+    font-size: 12px;
+  }
+}
