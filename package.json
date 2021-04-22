@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "devstart": "nodemon src/server/server.js",
+    "devstart": "webpack-dev-server --hot",
     "build": "webpack"
   },
   "repository": {
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/Maximillini/ac_donation_form_challenge#readme",
   "dependencies": {
-    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
