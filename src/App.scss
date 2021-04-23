@@ -77,7 +77,7 @@ sup {
   margin-top: 20px;
   width: 80%;
   .text-container {
-    padding: 20px;
+    padding: 20px 40px;
     max-width: 460px;
     p {
       min-height: 38px;
@@ -98,33 +98,40 @@ sup {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  position: relative;
+  &::before {
+    content: "$";
+    height: 20px;
+    position: absolute;
+    width: 20px;
+  }
   .input-container {
     display: flex;
     height: 3em;
     position: relative;
-    .inline-form {
-      height: 100%;
+    .dollar-sign {
+      border: 1px solid $slate-40;
+      border-right: 0;
+      color: $slate-60;
+      font-weight: bold;
+      padding-top: 12px;
+      padding-left: 10px;
     }
   }
   .donation-input {
     border: 1px solid $slate-40;
-    border-right: 0px;
-    border-radius: 5px 0 0 5px;
+    border-right: 0;
+    border-left: 0;
     font-size: 1em;
     font-weight: bold;
     outline: none;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
     position: relative;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       -moz-appearance: textfield;
       margin: 0;
-    }
-    &::before {
-      content: "$";
-      height: 20px;
-      width: 20px;
     }
   }
   .give-button {
@@ -150,5 +157,6 @@ sup {
     flex: 1 0 100%;
     padding-top: 6px;
     font-size: 12px;
+    text-align: center;
   }
 }
