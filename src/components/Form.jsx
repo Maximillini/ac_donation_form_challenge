@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Form = ({
   fundsRaised,
@@ -6,23 +6,26 @@ const Form = ({
   numberOfDonors,
   setNumberOfDonors,
 }) => {
-  const [value, setValue] = useState();
-  const [errors, setErrors] = useState();
+  const [value, setValue] = useState('');
+  const [errors, setErrors] = useState('');
+
+  useEffect(() => {
+    setErrors('');
+    setTimeout(() => {
+      if (value && value < 5) {
+        setErrors('');
+        return setErrors('Sorry, but we can\'t accept donations less than $5');
+      }
+    }, 3000)
+  }, [value])
 
   const handleInputChange = (e) => setValue(e.target.value);
-
-  const handleDonationError = () => {
-    setErrors();
-    if (!value) return setErrors("Please enter a dollar amount above $5");
-    if (value < 5)
-      return setErrors("Sorry, but we can't accept donations less than $5");
-  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(parseFloat(value));
 
-    if (!value || value < 5) return handleDonationError();
+    if (!value || value < 5) return;
 
     const donation = parseFloat(value);
 
@@ -35,13 +38,14 @@ const Form = ({
   return (
     <form className="donation-form" onSubmit={handleOnSubmit}>
       <div className="input-container">
+        <span className="dollar-sign inline-form">$</span>
         <input
           className="inline-form donation-input"
           name="donation-input"
           type="number"
           min="0"
           onChange={handleInputChange}
-          placeholder="$5"
+          placeholder="5"
           value={value}
           step=".01"
         />
