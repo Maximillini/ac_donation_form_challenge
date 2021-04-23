@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+const ERROR_MESSAGE = 'Sorry, but we can\'t accept donations less than $5';
+
 const Form = ({
   fundsRaised,
   setFundsRaised,
@@ -9,21 +11,21 @@ const Form = ({
   const [value, setValue] = useState('');
   const [errors, setErrors] = useState('');
 
-  useEffect(() => {
+  const displayDelayedError = () => {
     setErrors('');
+    console.log(`value in displayDelayedError: ${value}`)
     setTimeout(() => {
       if (value && value < 5) {
         setErrors('');
-        return setErrors('Sorry, but we can\'t accept donations less than $5');
+        setErrors(ERROR_MESSAGE);
       }
-    }, 3000)
-  }, [value])
+    }, 3000);
+  }
 
   const handleInputChange = (e) => setValue(e.target.value);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(parseFloat(value));
 
     if (!value || value < 5) return;
 
@@ -48,6 +50,7 @@ const Form = ({
           placeholder="5"
           value={value}
           step=".01"
+          onKeyUp={displayDelayedError}
         />
         <input
           className="inline-form give-button"
